@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+{% block body %}    
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Setor de Atendimento ao Cliente</h1>
+            <form method="post" action="{{ path('sac_registrar') }}">
+                <div class="form-group">
+                    <label for="nome">Nome</label>
+                    <input type="text" class="form-control" id="nome" placeholder="Fulano" 
+                           name="nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="pedidoId">Número do pedido</label>
+                    <input type="number" class="form-control" id="pedido_id" placeholder="12345" 
+                           name="pedidoId" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" 
+                           name="email" placeholder="fulano@longevo.com.br" required>
+                </div>
+                <div class="form-group">
+                    <label for="titulo">Título</label>
+                    <input type="text" class="form-control" id="titulo" placeholder="Título do chamado"
+                           name="titulo" required>
+                </div>
+                <div class="form-group">
+                    <label for="observacao">Observação</label>
+                    <textarea class="form-control" rows="3" required name="observacao"></textarea>
+                </div>
+                <button type="reset" class="btn btn-default">Limpar</button>
+                <button type="submit" class="btn btn-default">Enviar</button>
+            </form>            
+        </div>
+    </div>
+{% endblock %}

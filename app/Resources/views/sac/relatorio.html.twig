@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+{% block body %}    
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Relatório de chamados</h1>
+            <form method="get" action="{{ path('sac_relatorio') }}">
+                <div class="form-group">
+                    <label for="pedidoId">Número do pedido</label>
+                    <input type="number" class="form-control" id="pedido_id" placeholder="12345" 
+                           name="pedidoId">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" 
+                           name="email" placeholder="fulano@longevo.com.br">
+                </div>
+                <button type="submit" class="btn btn-default">Pesquisar</button>
+            </form>
+        </div>
+    </div>
+    <hr/>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>{{ knp_pagination_sortable(pagination, 'Número do pedido', 'c.id') }}</th>
+                        <th>{{ knp_pagination_sortable(pagination, 'Título', ['c.titulo']) }}</th>
+                        <th>{{ knp_pagination_sortable(pagination, 'Data', ['c.dataInclusao']) }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for chamado in pagination %}
+                        <tr {% if loop.index is odd %}class="color"{% endif %}>
+                            <td>{{ chamado.id }}</td>
+                            <td>{{ chamado.titulo }}</td>
+                            <td>{{ chamado.dataInclusao|date('d/m/Y H:i:s') }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="navigation">
+                {{ knp_pagination_render(pagination) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
